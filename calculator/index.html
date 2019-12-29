@@ -1,0 +1,127 @@
+<html>
+	<head>
+		<script>
+			var isEqual = false;
+			var allowSymbol = true;
+
+            function val(num){
+				if(!allowSymbol && typeof(num)!== 'number')
+				{
+					alert("Please enter numeric value!!!");
+					return;
+				}
+				if(isEqual && typeof(num)=='number')
+				{
+					document.form.view.value = num;
+					isEqual = false;
+				} 
+				else {
+						document.form.view.value = document.form.view.value+num;
+						isEqual = false;
+					 }
+				allowSymbol = (typeof(num)!=='number') ? false : true
+            }
+			 
+			function equal(){
+				var equals = document.form.view.value;
+				if(equals)
+				{
+					document.form.view.value = eval(equals);
+					isEqual = true;
+					allowSymbol = true;
+				}
+			}
+			
+			function clr(){
+				document.form.view.value="";
+				allowSymbol = true;
+			}
+
+			function back(){
+				var bck = document.form.view.value;
+				document.form.view.value = bck.substring(0,bck.length-1);
+				allowSymbol = true;
+			}
+
+        </script>
+		
+		<style>
+			*{
+				margin:0;
+				padding:0;
+				background:linear-gradient(to left,#82ABEE,#F26B63);
+			}
+			
+			.button{
+				width:50px;
+				height:60px;
+				padding: 10px 65.50px;
+				font-size:25px;
+				margin:0;
+				cursor:pointer;
+				background:#1A5276;
+				border:none;
+				color:white;
+			
+			}
+			
+			.view{
+				width:528px;
+				margin:5px;
+				font-size:25px;
+				padding:35px;
+				background:#F0F3F4;
+				color:#17202A;
+			}
+			
+			.main{
+				position:absolute;
+				top:50%;
+				left:50%;
+				transform:translateX(-50%)translateY(-50%);
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="main">
+			<form name="form">
+				<input class="view" name="view" >		
+			</form>
+			
+			<table>
+					<tr>
+						<td colspan=2><input class="button" style="width:264" type="button" value="Clear" onclick="clr()"></td>
+						<td><input class="button" type="button" value="<~" onclick="back()"></td>
+						<td><input class="button" type="button" value="/" onclick="val('/')"></td>
+					</tr>
+					<tr>
+						<td><input class="button" type="button" value="7" onclick="val(7)"></td>
+						<td><input class="button" type="button" value="8" onclick="val(8)"></td>
+						<td><input class="button" type="button" value="9" onclick="val(9)"></td>
+						<td><input class="button" type="button" value="X" onclick="val('*')"></td>
+					</tr>
+					<tr>
+						<td><input class="button" type="button" value="4" onclick="val(4)"></td>
+						<td><input class="button" type="button" value="5" onclick="val(5)"></td>
+						<td><input class="button" type="button" value="6" onclick="val(6)"></td>
+						<td><input class="button" type="button" value="-" onclick="val('-')"></td>
+					</tr>
+					<tr>
+						<td><input class="button" type="button" value="1" onclick="val(1)"></td>
+						<td><input class="button" type="button" value="2" onclick="val(2)"></td>
+						<td><input class="button" type="button" value="3" onclick="val(3)"></td>
+						<td><input class="button" type="button" value="+" onclick="val('+')"></td>
+					</tr>
+					<tr>
+						<td><input class="button" type="button" value="00" onclick="val('00')"></td>
+						<td><input class="button" type="button" value="0" onclick="val(0)"></td>
+						<td><input class="button" type="button" value="." onclick="val('.')"></td>
+						<td><input class="button" type="button" value="=" onclick="equal()"></td>
+					</tr>
+			</table>
+			
+		</div>
+	</body>
+</html>
